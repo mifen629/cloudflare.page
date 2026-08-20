@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no">
+    <title>内部故障</title>
+    <style>
+        :root { --bg: #000000; --card: rgba(7,10,19,0.9); --blue: #2158ED; --text: #ffffff; --gray: #8e9aa8; --green: #00ffaa; }
+        html, body { height: 100%; margin: 0; padding: 0; background: var(--bg); color: var(--text); overflow: hidden; }
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: space-between; box-sizing: border-box; padding: 6vh 0; min-height: 100vh; position: relative; }
+        .grid-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(33,88,237,0.025) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(33,88,237,0.025) 1.5px, transparent 1px); background-size: 50px 50px; pointer-events: none; z-index: 2; }
+        .portal-card { background: var(--card); border: 2px solid var(--blue); box-shadow: 0 0 35px rgba(33,88,237,0.35), inset 0 0 20px rgba(33,88,237,0.15); border-radius: 20px; padding: 50px 35px; width: 88%; max-width: 420px; text-align: center; z-index: 10; box-sizing: border-box; margin: auto 0; transition: all 0.4s ease; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(33,88,237,0.1); border: 1px solid var(--blue); color: #60a5fa; padding: 5px 14px; border-radius: 99px; font-size: 11px; font-weight: 700; margin-bottom: 22px; }
+        .badge .dot, .status-indicator { width: 6px; height: 6px; background-color: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
+        .badge .dot { animation: blink 1.2s infinite alternate; }
+        @keyframes blink { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+        
+        .title-container { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 32px; }
+        .logo-box { display: flex; align-items: center; justify-content: center; color: var(--blue); filter: drop-shadow(0 0 8px rgba(33,88,237,0.6)); flex-shrink: 0; }
+        .text-group { display: flex; flex-direction: column; text-align: left; }
+        
+        .title { font-size: 32px; font-weight: 900; margin: 0; letter-spacing: 2px; line-height: 1.1; }
+        .slogan { font-size: 14px; font-weight: 600; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; margin: 6px 0 0 0; opacity: 0.85; }
+        
+        .enter-button { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--blue); color: #ffffff; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 18px 32px; font-size: 16px; font-weight: 700; text-decoration: none; cursor: pointer; width: 100%; box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: all 0.25s ease; }
+        .enter-button:hover { background: #3b66ff; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(33, 88, 237, 0.6); }
+        .button-subtext { display: block; font-size: 11px; color: #6b7280; margin-top: 12px; letter-spacing: 0.5px; user-select: none; }
+        .network-monitor { position: relative; width: 88%; max-width: 420px; z-index: 10; background: var(--card); border: 2px solid var(--blue); box-shadow: 0 0 25px rgba(33,88,237,0.2); border-radius: 12px; padding: 14px 20px; box-sizing: border-box; margin-bottom: 10px; }
+        .monitor-content { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+        .monitor-label { display: flex; align-items: center; gap: 8px; color: var(--gray); font-weight: 500; }
+        .time-value { font-family: monospace; font-weight: 700; color: var(--green); font-size: 14px; text-shadow: 0 0 8px rgba(0, 255, 170, 0.4); }
+        @media (max-width: 480px) { body { padding: 4vh 0; } .portal-card { padding: 45px 24px; width: 90%; } .title { font-size: 28px; } .slogan { font-size: 12px; } .title-container { gap: 10px; } .network-monitor { width: 90%; } .monitor-content { flex-direction: column; gap: 6px; text-align: center; } }
+    </style>
+    <script>window.pStart = performance.now();</script>
+</head>
+<body>
+
+<div class="grid-overlay"></div>
+<div style="flex-shrink: 0; height: 1px;"></div>
+
+<div class="portal-card" id="portalCard">
+    <div class="badge"><div class="dot"></div><span>All systems operational</span></div>
+    
+    <div class="title-container">
+        <div class="logo-box">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="text-group">
+            <h1 class="title">内部故障</h1>
+            <div class="slogan">服务器故障导致无法建立连接</div>
+        </div>
+    </div>
+
+    <button class="enter-button" id="enterBtn">
+        <span>返回官网</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+    <span class="button-subtext"><div class="captcha-wrapper"> ::CLOUDFLARE_ERROR_1000S_BOX:: </div></span>
+</div>
+
+<div class="network-monitor" id="monitorPanel">
+    <div class="monitor-content">
+        <div class="monitor-label"><div class="status-indicator"></div><span>您访问到CloudFlare的加载用时</span></div>
+        <div class="time-value" id="loadTimeValue">0 ms</div>
+    </div>
+</div>
+
+<script>
+    const MAIN_SITE_URL = "https://your-main-site.com";
+
+    let realTime = Math.round(performance.now() - window.pStart);
+    document.getElementById('loadTimeValue').innerText = (realTime <= 0 ? 1 : realTime) + " ms";
+
+    document.getElementById('enterBtn').addEventListener('click', function () {
+        document.getElementById('portalCard').style.opacity = '0';
+        document.getElementById('portalCard').style.transform = 'scale(1.015)';
+        document.getElementById('portalCard').style.filter = 'blur(12px)';
+        document.getElementById('monitorPanel').style.opacity = '0';
+        setTimeout(() => { window.location.href = MAIN_SITE_URL; }, 400);
+    });
+</script>
+
+</body>
+</html>
