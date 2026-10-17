@@ -6,7 +6,7 @@
     <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24' fill='none' stroke='%232158ED' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'%3E%3C/path%3E%3Cpath d='M12 19s5.5-2.5 5.5-7.5V7.2l-5.5-2-5.5 2v4.3c0 5 5.5 7.5 5.5 7.5z' fill='%232158ED' stroke='none'%3E%3C/path%3E%3Cpath d='M10.4 9.5v3.3c0 1 0.6 1.6 1.6 1.6s1.6-0.6 1.6-1.6V9.5' stroke='%23FFF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'%3E%3C/path%3E%3C/svg%3E" type="image/svg+xml" />
 	<title>内部故障</title>
     <style>
-        :root { --bg: #000000; --card: rgba(7,10,19,0.9); --blue: #2158ed; --text: #ffffff; --gray: #8e9aa8; --green: #00ffaa; scrollbar-width: none; -ms-overflow-style: none; }
+        :root { --bg: #000000; --card: rgba(7,10,19,0.9); --blue: #2158ed; --text: #ffffff; --gray: #8e9aa8; --green: #00ffaa; --red: #ff5555; scrollbar-width: none; -ms-overflow-style: none; }
         html, body { min-height: 100%; margin: 0; padding: 0; background: var(--bg); color: var(--text); overflow-x: hidden; overflow-y: auto; }
         body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; position: relative; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; box-sizing: border-box; padding-top: max(20px, env(safe-area-inset-top)); padding-bottom: max(20px, env(safe-area-inset-bottom)); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
         html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
@@ -21,12 +21,11 @@
         .group { display: flex; flex-direction: column; text-align: left; }
         .check { font-size: 32px; font-weight: 900; margin: 0; letter-spacing: 2px; line-height: 1.1; }
         .check-reason { font-size: 14px; font-weight: 600; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; margin: 6px 0 0 0; opacity: 0.85; }
-		.error-box { width: 100%; height: 125px; box-sizing: border-box; padding: 16px; margin-bottom: 0; overflow: auto; text-align: left; background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(33, 88, 237, 0.65); border-radius: 10px; box-shadow: inset 0 0 15px rgba(33, 88, 237, 0.08); color: #a7b9d0; font-family: Consolas, Monaco, "Courier New", monospace; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; user-select: text; -webkit-user-select: text; scrollbar-width: none; -ms-overflow-style: none; }
-		.error-box::-webkit-scrollbar { display: none; }
+		.error-box { width: 100%; height: auto; box-sizing: border-box; padding: 16px; margin-bottom: 0; overflow-wrap: anywhere; text-align: left; background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(33, 88, 237, 0.65); border-radius: 10px; box-shadow: inset 0 0 15px rgba(33, 88, 237, 0.08); color: #a7b9d0; font-family: Consolas, Monaco, "Courier New", monospace; font-size: 12px; line-height: 1.7; user-select: text; -webkit-user-select: text; }
 		.error-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(33, 88, 237, 0.3); color: #60a5fa; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
-		.error-indicator { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: #ff5555; box-shadow: 0 0 7px #ff5555; animation: errorblink 0.6s ease-in-out infinite alternate; }
+		.error-indicator { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 7px var(--red); animation: errorblink 0.6s ease-in-out infinite alternate; }
 		.error-content { white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; }
-		@keyframes errorblink { from { opacity: 0.3; box-shadow: 0 0 2px #ff5555; } to { opacity: 1; box-shadow: 0 0 10px #ff5555; } }
+		@keyframes errorblink { from { opacity: 0.3; box-shadow: 0 0 2px var(--red); } to { opacity: 1; box-shadow: 0 0 10px var(--red); } }
         @media (max-width: 480px) { .card { padding: 45px 24px; width: 90%; } .title { font-size: 28px; } .slogan { font-size: 12px; } .title { gap: 10px; } }
 		@supports (min-height: 100dvh) { body { min-height: 100dvh; } }
     </style>
@@ -48,8 +47,8 @@
     </div>
 <div class="error-box">
     <div class="error-header">
-        <span><i class="error-indicator"></i>ERROR DETAILS</span>
-        <span>CLOUDFLARE</span>
+        <span><i class="error-indicator"></i>输出内容</span>
+        <span>来自 CLOUDFLARE</span>
     </div>
     <div class="error-content" id="error">::CLOUDFLARE_ERROR_1000S_BOX::</div>
 </div>
