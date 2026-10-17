@@ -2,14 +2,15 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24' fill='none' stroke='%232158ED' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'%3E%3C/path%3E%3Cpath d='M12 19s5.5-2.5 5.5-7.5V7.2l-5.5-2-5.5 2v4.3c0 5 5.5 7.5 5.5 7.5z' fill='%232158ED' stroke='none'%3E%3C/path%3E%3Cpath d='M10.4 9.5v3.3c0 1 0.6 1.6 1.6 1.6s1.6-0.6 1.6-1.6V9.5' stroke='%23FFF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'%3E%3C/path%3E%3C/svg%3E" type="image/svg+xml" />
 	<title>安全检查</title>
     <style>
-        :root { --bg: #000000; --card: rgba(7,10,19,0.9); --blue: #2158ed; --text: #ffffff; --gray: #8e9aa8; --green: #00ffaa; }
-        html, body { height: 100%; margin: 0; padding: 0; background: var(--bg); color: var(--text); overflow: hidden; }
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; position: relative; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-        .grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(33,88,237,0.25) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(33,88,237,0.25) 1.5px, transparent 1px); background-size: 50px 50px; pointer-events: none; z-index: 2; }
+        :root { --bg: #000000; --card: rgba(7,10,19,0.9); --blue: #2158ed; --text: #ffffff; --gray: #8e9aa8; --green: #00ffaa; scrollbar-width: none; -ms-overflow-style: none; }
+        html, body { min-height: 100%; margin: 0; padding: 0; background: var(--bg); color: var(--text); overflow-x: hidden; overflow-y: auto; }
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; position: relative; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; box-sizing: border-box; padding-top: max(20px, env(safe-area-inset-top)); padding-bottom: max(20px, env(safe-area-inset-bottom)); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+        html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+		.grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(33,88,237,0.25) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(33,88,237,0.25) 1.5px, transparent 1px); background-size: 50px 50px; pointer-events: none; z-index: 2; }
         .card { background: var(--card); border: 2px solid var(--blue); box-shadow: 0 0 35px var(--blue), inset 0 0 20px rgba(33,88,237,0.15); border-radius: 20px; padding: 50px 35px; width: 88%; max-width: 420px; text-align: center; z-index: 10; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); animation: cardFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes cardFadeIn { 0% { opacity: 0; transform: translateY(12px) scale(0.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
         .status { display: inline-flex; align-items: center; gap: 6px; background: rgba(33,88,237,0.1); border: 1px solid var(--blue); color: #60a5fa; padding: 5px 14px; border-radius: 99px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 22px; }
@@ -28,6 +29,7 @@
         .footer { display: block; text-align: left; font-size: 11px; color: #6B7280; margin-top: 12px; letter-spacing: 0.5px; user-select: none; line-height: 1.6; }
 		.scale-wrapper { width: 250px; margin: 0 auto; transform: scale(0.75); transform-origin: left top; margin-bottom: -35px; }
         @media (max-width: 480px) { .card { padding: 45px 24px; width: 90%; } .title { font-size: 28px; } .slogan { font-size: 12px; } .title { gap: 10px; } }
+		@supports (min-height: 100dvh) { body { min-height: 100dvh; } }
     </style>
 </head>
 <body>
